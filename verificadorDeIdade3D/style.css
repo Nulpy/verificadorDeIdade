@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wgth@400;600&display=swap');
+
+:root{
+    --cor-fundo: #f4f7f9; /* Um Cinza bem claro*/
+    --cor-container: #fff;/* Branco*/
+    --cor-primaria: #007bff; /*Azul vibrante para botões e detalhes*/
+    --cor-texto-principal: #333; /* Cinza escuro para Leitura*/
+    --cor-texto-secundario: #6c757d;/*Cinza mais claro*/
+    --cor-borda: #dee2e6;/*borada sutil*/
+    --font-principal: 'Poppins', sans-serif; /**/
+}
+body{
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto-principal);
+    font-family: var(--font-principal);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+
+    overflow: hidden;
+
+}
+
+#background{
+    position:fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /*garante que o canvas fique atras de todo o conteúdo */
+    z-index: -1;
+}
+
+/* o container do formulario */
+.container{
+    width: 380px;
+    padding: 40px;
+    background: var(--cor-container);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0,1) ;
+    text-align: center;
+    border: 1px solid var(--cor-borda);
+
+}
+
+h1{
+    font-weight: 60;
+    margin-bottom: 8px;
+
+}
+
+.subtitulo{
+    color: var(--cor-texto-secundario);
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+input, button{
+    width: 100%;
+    box-sizing: border-box;
+    margin: 10px 0;
+    padding: 14px;
+    font-size: 16px;
+    font-family: var(--font-principal);
+    border-radius: 8px;
+    border: 1px solid var(--cor-borda);
+    transition: all 0.3s ease;
+    
+
+}
+
+input:focus{
+    outline: none;
+    border-color: var(--cor-primaria);
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0,2);
+
+}
+
+button{
+    cursor: pointer;
+    font-weight: 600;
+    background-color: var(--cor-primaria);
+    color: white;
+    border: none;
+
+}
+button:hover{
+    opacity: 0.85;
+}
+/*estilo do resultado */
+#resultado{
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: 600;
+    min-height: 25px;
+    color: var(--cor-primaria);
+    opacity: 0;
+    transition: opacity o.5s ease;
+
+}
+
+#resultado.visivel{
+    opacity: 1;
+}
+
