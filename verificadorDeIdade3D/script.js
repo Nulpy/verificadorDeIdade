@@ -13,7 +13,7 @@ function verificarIdade(){
     }else if(idade< 18){
         menssagem = 'Você é menor de idade.';
     }else if(idade <60){
-        menssagem = 'Você é adulto.'
+        menssagem = 'Você é adulto.';
     }else{
         menssagem = 'você é idoso';
 
@@ -25,16 +25,19 @@ function verificarIdade(){
 }
 
 verifyButton.addEventListener('click', verificarIdade);
-idadeInput.addEventListener('keyup', (event) =>{
+idadeInput.addEventListener('keyup', (event) => {
     if(event.key === 'Enter') verificarIdade();
-})
+});
 
 //animação canvas de fundo
 const canvas = document.getElementById('background-canvas');
-const ctx = canvas.getContext('2d'); // contexto 2d, onde desenhamos
+const ctx = canvas.getContext('2d');
+ // contexto 2d, onde desenhamos
+ 
+
 //Ajusta o tamanho do canvas para o da janela
 canvas.width = window.innerWidth;
-canvas.width = window.innerHeight;
+canvas.height = window.innerHeight;
 
 //objeto para armazenarr a posiçao do mouse
 let mouse = {
@@ -63,7 +66,6 @@ class Particula{
         this.direcaoY = direcaoY;
         this.tamanho = tamanho;
         this.cor = cor;
-        
     }
     //metodo para desenhar a particula do cnva
     desenhar(){
@@ -79,7 +81,7 @@ class Particula{
         if(this.x > canvas.width || this.x < 0){
             this.direcaoX = -this.direcaoX;
         }
-        if(this.y > canvas.width || this.y < 0){
+        if(this.y > canvas.height || this.y < 0){
             this.direcaoY = -this.direcaoY;
         }
         this.x += this.direcaoX;
@@ -98,24 +100,28 @@ function init(){
         let y = Math.random() * (innerHeight - tamanho * 2) + tamanho;
         let direcaoX = (Math.random() * 0.4) - 0.2;
         let direcaoY = (Math.random() * 0.4) - 0.2;
-        let cor = '007bff';
+        let cor = '#007bff';
         particulasArray.push(new Particula(x, y, direcaoX, direcaoY, tamanho, cor));
     }
 }
 
 // Funcao para conectar as particulas com linhas
 function conectar(){
-    for(let a = 0; a> particulasArray.length; a++){
+    for(let a = 0; a < particulasArray.length; a++){
         for(let b = 0; b < particulasArray.length; b++){
-            let distancia =((particulasArray[a].x - particulasArray[b].x) * (particulasArray[a].x - particulasArray[b].x)) * ((particulasArray[a].y - particulasArray[b].y) * (particulasArray[a].y - particulasArray[b].y));
+        let dx = particulasArray[a].x - particulasArray[b].x;
+        let dy = particulasArray[a].y - particulasArray[b].y;
+        let distancia = dx * dx + dy * dy;
+
 
             // se a distancia entre duas particulas for menor que um certo valor, desenha uma linha
-            if(distancia < (canvas.width/7) * (canvas.Height/ 7)){
-                ctx.stokeStyle = `rgba(0, 123, 255, ${ - (distancia/2000)})`
-                ctx.lineWidht= 1;
+            if(distancia < (canvas.width/7) * (canvas.height/ 7)){
+            ctx.strokeStyle = `rgba(0, 123, 255, ${1 - (distancia/20000)})`;
+            ctx.lineWidth = 1;
+
                 ctx.beginPath();
                 ctx.moveTo(particulasArray[a].x, particulasArray[a].y);
-                ctx.moveTo(particulasArray[b].x, particulasArray[b].y);
+                ctx.lineTo(particulasArray[b].x, particulasArray[b].y);
                 ctx.stroke();
             }
         }
@@ -125,7 +131,8 @@ function conectar(){
 //loop de animaçao 
 function animar(){
     requestAnimationFrame(animar);
-    ctx.clearRect(0, 0, innerWidth, innerHeight); //Limpa o canvas cada frame
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+ //Limpa o canvas cada frame
 
     for(let i = 0; i < particulasArray.length; i++){
         particulasArray[i].atualizar();
@@ -136,7 +143,7 @@ function animar(){
 //recria as particulas se a janela for redimensionada
 window.addEventListener('resize', () => {
     canvas.width = innerWidth;
-    canvas.Height = innerHeight;
+    canvas.height = innerHeight;
     init();
 
 });

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wgth@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
 :root{
     --cor-fundo: #f4f7f9; /* Um Cinza bem claro*/
@@ -23,7 +23,7 @@ body{
 
 }
 
-#background{
+#background-canvas{
     position:fixed;
     top: 0;
     left: 0;
@@ -39,14 +39,14 @@ body{
     padding: 40px;
     background: var(--cor-container);
     border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0,1) ;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) ;
     text-align: center;
     border: 1px solid var(--cor-borda);
 
 }
 
 h1{
-    font-weight: 60;
+    font-weight: 606;
     margin-bottom: 8px;
 
 }
